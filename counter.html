@@ -1,37 +1,179 @@
-<div id="countdown-widget">
-  <label for="date-input">Wprowadź datę odliczania:</label>
-  <input type="date" id="date-input">
-  <button onclick="setCountdownDate()">Zatwierdź</button>
-  <div id="countdown-display">Pozostały czas do daty: 0 dni, 0 godzin, 0 minut, 0 sekund.</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+        }
+  
+        #timer {
+            color: #eeeeee;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Lato', sans-serif;
+            font-size: .7em;
+            letter-spacing: 5px;
+        }
 
-<script>
-  function setCountdownDate() {
-    const inputDate = document.getElementById("date-input").value;
-    const countdownDate = new Date(inputDate).getTime();
+        .days, .hours, .minutes, .seconds {
+            display: inline-block;
+            padding: 20px;
+            width: 100px;
+            border-radius: 5px;
+        }
 
-    if (isNaN(countdownDate)) {
-      alert("Proszę wprowadzić poprawną datę.");
-      return;
-    }
+        .days {
+            background: #EF2F3C;
+        }
 
-    // Update countdown every second
-    const countdownInterval = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
+        .hours {
+            background: #eeeeee;
+            color: #183059;
+        }
 
-      if (distance <= 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown-display").innerText = "Czas minął!";
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        .minutes {
+            background: #276FBF;
+        }
 
-        document.getElementById("countdown-display").innerText =
-          "Pozostały czas do daty: " + days + " dni, " + hours + " godzin, " + minutes + " minut, " + seconds + " sekund.";
-      }
-    }, 1000);
-  }
-</script>
+        .seconds {
+            background: #F0A202;
+        }
+
+        .numbers {
+            font-family: 'Montserrat', sans-serif;
+            color:  #183059;
+            font-size: 4em;
+            text-align: center;
+        }
+
+        .white {
+            position: absolute;
+            background:  #eeeeee;
+            height: 85px;
+            width: 75px;
+            left: 30%;
+            top: 2%;
+        }
+
+        .red {
+            position: absolute;
+            background:  #EF2F3C;
+            left: 18%;
+            top: 9%;
+            height: 65px;
+            width: 70px;
+        }
+
+        .blue {
+            position: absolute;
+            background:  #276FBF;
+            height: 80px;
+            width: 80px;
+            left: 60%;
+            top: 5%;
+        }
+
+        /* Dodane style dla pola daty i przycisku */
+        .date-input-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .date-input {
+            font-family: 'Lato', sans-serif;
+            font-size: 1em;
+            padding: 5px 10px;
+            border: 1px solid #183059;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .submit-button {
+            font-family: 'Lato', sans-serif;
+            font-size: 1em;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #183059;
+            color: #eeeeee;
+            cursor: pointer;
+            outline: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="timer">
+
+        <div class="days"> 
+            <div id="days" class="numbers"> </div>days
+        </div> 
+        <div class="hours"> 
+            <div  id="hours" class="numbers"> </div>hours
+        </div> 
+        <div class="minutes"> 
+            <div  id="minutes" class="numbers"> </div>minutes
+        </div> 
+        <div   class="seconds"> 
+            <div id="seconds" class="numbers"> </div>seconds
+        </div> 
+
+        <!-- Pole do wprowadzania daty -->
+        <div class="date-input-container">
+            <input type="date" class="date-input" id="date-input">
+            <button class="submit-button" onclick="setCountdownDate()">Zatwierdź</button>
+        </div>
+
+    </div>
+
+    <script>
+        let timer; // Zmienna do przechowywania interwału odliczania
+
+        // Funkcja rozpoczynająca odliczanie
+        function setCountdownDate() {
+            const inputDate = document.getElementById("date-input").value;
+            const countdownDate = new Date(inputDate).getTime();
+
+            if (isNaN(countdownDate)) {
+                alert("Proszę wprowadzić poprawną datę.");
+                return;
+            }
+
+            // Wyczyszczenie poprzedniego interwału odliczania, jeśli istnieje
+            clearInterval(timer);
+
+            // Wywołanie odliczania co 1 sekundę
+            timer = setInterval(function() {
+                const now = new Date().getTime();
+                const diff = countdownDate - now;
+
+                if (diff <= 0) {
+                    clearInterval(timer);
+                    document.getElementById("days").innerHTML = 0;
+                    document.getElementById("hours").innerHTML = 0;
+                    document.getElementById("minutes").innerHTML = 0;
+                    document.getElementById("seconds").innerHTML = 0;
+                } else {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    document.getElementById("days").innerHTML = days;
+                    document.getElementById("hours").innerHTML = hours;
+                    document.getElementById("minutes").innerHTML = minutes;
+                    document.getElementById("seconds").innerHTML = seconds;
+                }
+            }, 1000);
+        }
+
+        // Uruchomienie odliczania po załadowaniu strony (w przypadku, gdy już jest ustawiona data)
+        setCountdownDate();
+    </script>
+</body>
+</html>
