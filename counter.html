@@ -1,0 +1,37 @@
+<div id="countdown-widget">
+  <label for="date-input">Wprowadź datę odliczania:</label>
+  <input type="date" id="date-input">
+  <button onclick="setCountdownDate()">Zatwierdź</button>
+  <div id="countdown-display">Pozostały czas do daty: 0 dni, 0 godzin, 0 minut, 0 sekund.</div>
+</div>
+
+<script>
+  function setCountdownDate() {
+    const inputDate = document.getElementById("date-input").value;
+    const countdownDate = new Date(inputDate).getTime();
+
+    if (isNaN(countdownDate)) {
+      alert("Proszę wprowadzić poprawną datę.");
+      return;
+    }
+
+    // Update countdown every second
+    const countdownInterval = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown-display").innerText = "Czas minął!";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown-display").innerText =
+          "Pozostały czas do daty: " + days + " dni, " + hours + " godzin, " + minutes + " minut, " + seconds + " sekund.";
+      }
+    }, 1000);
+  }
+</script>
