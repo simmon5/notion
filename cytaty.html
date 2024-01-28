@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motywacyjny Cytat</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #quote-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="quote-container">
+        <h2>Motywacyjny Cytat Dnia</h2>
+        <p id="quote-text"></p>
+    </div>
+
+    <script>
+        // Lista cytatów
+        var quotes = [
+            "Nie ma skomplikowanej sprawy, która nie mogłaby być rozbita na prostsze kroki. - Thomas Carlyle",
+            "Najlepszym sposobem przewidzenia przyszłości jest stworzenie jej. - Peter Drucker",
+            "Cel to marzenie z terminem. - Tony Robbins",
+            "Jeśli chcesz osiągnąć coś, czego nigdy wcześniej nie osiągnąłeś, musisz być gotów zrobić coś, czego nigdy wcześniej nie robiłeś. - Thomas Jefferson",
+            "Sukces to suma małych wysiłków, powtarzanych dzień po dniu. - Robert Collier",
+            "Jedyna droga do zrobienia wspaniałych rzeczy to kochanie tego, co robisz. - Steve Jobs",
+            "Najlepszym sposobem przewidzenia przyszłości jest stworzenie jej. - Alan Kay",
+            "Twoje życie zmieni się dopiero wtedy, gdy zaczniesz bardziej wierzyć w swoją moc niż w swoje wyjaśnienia. - Jordan Belfort",
+            "Zacznij tam, gdzie jesteś. Użyj tego, co masz. Zrób, co możesz. - Arthur Ashe",
+            "Wiedza jest potęgą, ale tylko wtedy, gdy jest używana. - Dale Carnegie",
+            "Twój środowisko nie określa tego, kim jesteś. To, co wybierasz, robi. - Wayne Dyer",
+            "Nigdy nie jest za późno na to, by stać się tym, kim marzyłeś, że będziesz. - George Eliot",
+            "Nie czekaj na okoliczności do osiągnięcia sukcesu. Twórz okoliczności sam. - Brian Tracy",
+            "Sukces to kwestia ukierunkowania uwagi na to, co jest ważne, z pominięciem tego, co nie jest. - David Allen",
+            "Nie ma nic niemożliwego, słowo samo mówi, 'Jestem możliwe!' - Audrey Hepburn",
+            "Najlepszy sposób przewidzenia przyszłości to ją stworzyć. - Peter Drucker",
+            "Dzisiaj jest twoim dniem! Twoje góry czekają na ciebie. Więc ruszaj w drogę! - Dr. Seuss",
+            "Postaw sobie cele tak wysoko, jak to możliwe, a potem idź jeszcze wyżej. - Zig Ziglar",
+            "Czas, którygo nie przeznaczysz na swoje cele, zostanie przeznaczony na osiągnięcie celów kogoś innego. - Tony Robbins",
+            "Działanie jest kluczem do wszelkiego sukcesu. - Pablo Picasso",
+            "Nieustanny wysiłek, nie długość czasu, prowadzi do sukcesu. - William Shakespeare",
+            "Jedynym sposobem na zrobienie świetnej pracy jest kochanie tego, co robisz. - Steve Jobs",
+            "Osiągnięcia są wynikiem działań, a działań dokonuje się poprzez decyzje. - John C. Maxwell",
+            "Nigdy nie rezygnuj z marzeń tylko dlatego, że zajmują one zbyt wiele czasu do ich osiągnięcia. Czas i tak upłynie. - Earl Nightingale",
+            "Sukces nie jest kluczem do szczęścia. Szczęście jest kluczem do sukcesu. Jeśli kochasz to, co robisz, odniesiesz sukces. - Albert Schweitzer",
+            "Najlepszym sposobem na przewidzenie przyszłości jest ją stworzyć. - Abraham Lincoln",
+            "Wstań z rana, myśl w dniu, działaj w ciągu roku, śnij przez całe życie. - Swami Sivananda",
+            "Działanie bez planu to jedynie strata czasu, a plan bez działania to jedynie złudzenie. - Źródło nieznane",
+            "Ważne jest nie tylko to, że zdobywamy sukces, ale jak stajemy się nim. - Alexander Den Heijer",
+            "Najlepszy sposób na przewidzenie przyszłości to stworzyć ją samemu. - Peter Drucker"
+        ];
+
+        // Wybierz losowy cytat
+        var randomIndex = Math.floor(Math.random() * quotes.length);
+        var randomQuote = quotes[randomIndex];
+
+        // Wyświetl cytat na stronie
+        document.getElementById("quote-text").innerHTML = randomQuote;
+    </script>
+</body>
+</html>
